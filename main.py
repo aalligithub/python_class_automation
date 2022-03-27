@@ -5,19 +5,18 @@ selenium.webdriver = webdriver_path
 
 
 class My_Classes:
-    def __init__(self, class_name, class_time, class_url, class_nested_dict):
+    def __init__(self, class_name, class_time, class_url):
         self.class_name = class_name
         self.class_time = class_time
         self.class_url = class_url
-        self.class_nested_dict = dict()
 
-    def addClass(self):
+    def add_class(self):
         pass
     
-    def deleteClass(self):
+    def delete_class(self):
         pass
 
-    def numOfClasses(self):
+    def num_of_classes(self):
         return self.class_nested_dict.len
 
 
@@ -39,3 +38,6 @@ class Build:
 
 class Interactive_console:
     pass
+
+test = My_Classes('math', 20, 'www.balls.com', 'new')
+test.add_class()
