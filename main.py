@@ -1,9 +1,15 @@
-class MyClasses:
-    def __init__(self, class_name, class_time, class_url, class_dict):
+import selenium
+
+webdriver_path = 'C:\webdriver\chromedriver'
+selenium.webdriver = webdriver_path
+
+
+class My_Classes:
+    def __init__(self, class_name, class_time, class_url, class_nested_dict):
         self.class_name = class_name
         self.class_time = class_time
         self.class_url = class_url
-        self.class_dict = dict()
+        self.class_nested_dict = dict()
 
     def addClass(self):
         pass
@@ -12,7 +18,7 @@ class MyClasses:
         pass
 
     def numOfClasses(self):
-        return self.class_dict.len
+        return self.class_nested_dict.len
 
 
 class Build:
@@ -29,3 +35,7 @@ class Build:
 
     def get_to_class(self):
         pass
+
+
+class Interactive_console:
+    pass
