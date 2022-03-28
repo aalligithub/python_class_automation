@@ -1,14 +1,12 @@
-classes_dict = {'riaziat_mohandesi_1' : {'Day': 'Sunday', 'Time_Hour': 13, 'Time_Minute': 30},
-                'riaziat_mohandesi_2' : {'Day': 'Sunday', 'Time_Hour': 15, 'Time_Minute': 15},
-                'system_amel_1' : {'Day': 'Thursday', 'Time_Hour': 7, 'Time_Minute': 30},
-                'system_amel_2' : {'Day': 'Thursday', 'Time_Hour': 9, 'Time_Minute': 15},
-                'ravesh_pajohesh' : {'Day': 'Sunday', 'Time_Hour': 17, 'Time_Minute': 0},
-                'memary_computer_1' : {'Day': 'Thursday', 'Time_Hour': 13, 'Time_Minute': 30},
-                'memary_computer_2' : {'Day': 'Thursday', 'Time_Hour': 15, 'Time_Minute': 15},
-                'sakhteman_dade_1' : {'Day': 'Saturday', 'Time_Hour': 13, 'Time_Minute': 30},
-                'sakhteman_dade_2' : {'Day': 'Saturday', 'Time_Hour': 15, 'Time_Minute': 15},
-                'amar_ehtemal_mohandesy_1' : {'Day': 'Monday', 'Time_Hour': 9, 'Time_Minute': 15},
-                'amar_ehtemal_mohandesy_2' : {'Day': 'Monday', 'Time_Hour': 11, 'Time_Minute': 0},
-                'tarikh_farhang' : {'Day': 'Sunday', 'Time_Hour': 15, 'Time_Minute': 15},
-                'varzesh' : {'Day': 'Sunday', 'Time_Hour': 9, 'Time_Minute': 15},
+from asyncio.windows_events import NULL
+
+
+classes_dict = {'Riaziat mohandesi' :                       {'Day': 'Sunday',   'First_hour': 13, 'First_minute': 30, 'Second_hour': 15,   'Second_minute': 15,   'Name': 'ریاضیات مهندسی'},
+                'System haye amel' :                        {'Day': 'Thursday', 'First_hour': 7,  'First_minute': 30, 'Second_hour': 9,    'Second_minute': 15,   'Name': 'سیستم های عامل'},
+                'Ravesh pajohesh' :                         {'Day': 'Sunday',   'First_hour': 17, 'First_minute': 0,  'Second_hour': NULL, 'Second_minute': NULL, 'Name': 'روش پژوهش و ارایه'},
+                'Memari computer' :                         {'Day': 'Thursday', 'First_hour': 13, 'First_minute': 30, 'Second_hour': 15,   'Second_minute': 15,   'Name': 'معماری کامپیوتر'},
+                'Sakhteman dade' :                          {'Day': 'Saturday', 'First_hour': 13, 'First_minute': 30, 'Second_hour': 15,   'Second_minute': 15,   'Name': 'ساختمان داده'},
+                'Amar ehtemal mohandesy' :                  {'Day': 'Monday',   'First_hour': 9,  'First_minute': 15, 'Second_hour': 11,   'Second_minute': 0,    'Name': 'آمار و احتمال مهندسی'},
+                'Tarikh farhang va tamadon' :               {'Day': 'Sunday',   'First_hour': 15, 'First_minute': 15, 'Second_hour': NULL, 'Second_minute': NULL, 'Name': 'تاریخ فرهنگ و تمدن اسلام و ایران'},
+                'Varzesh 1' :                               {'Day': 'Sunday',   'First_hour': 9,  'First_minute': 15, 'Second_hour': NULL, 'Second_minute': NULL, 'Name': 'ورزش 1'},
 }
