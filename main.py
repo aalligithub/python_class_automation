@@ -1,12 +1,33 @@
 import selenium
-# from nested_dict import classes_dict
+from nested_dict import classes_dict
+# import mysql.connector
+
 
 webdriver_path = 'C:\webdriver\chromedriver'
 selenium.webdriver = webdriver_path
 
-classes_dict = {  "brand": "Ford",
-  "model": "Mustang",
-  "year": 1964}
+
+file = open("username_vadana.txt", "r")
+username_vadana = file.read()
+
+file = open("password_vadana.txt", "r")
+password_vadana = file.read()
+
+file = open("username_db.txt", "r")
+username_db = file.read()
+
+file = open("password_db.txt", "r")
+password_db = file.read()
+
+file = open("host_db.txt", "r")
+host_db = file.read()
+
+
+# mydb = mysql.connector.connect(
+#   host="localhost",
+#   user="yourusername",
+#   password="yourpassword"
+# )
 
 class My_Classes:
     def __init__(self):
@@ -68,4 +89,6 @@ class Interactive_console:
     pass
 
 test = My_Classes()
-test.delete_all()
+# test.delete_all()
+print(username_db)
+print(username_vadana)
