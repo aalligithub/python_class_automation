@@ -50,14 +50,16 @@ if __name__ == "__main__":
     if priv_key_file.read() == '' or pub_key_file.read() == '':
         make_keys()
 
-    user_input = input('\nHello welcome to the Encryptor, for encrypting your PASSWORD enter [1], for USERNAME enter [2], to renew your keys enter [3]... ')
+    user_input = input(
+        '\nHello welcome to the Encryptor, for encrypting your PASSWORD enter [1], for USERNAME enter [2], to renew your keys enter [3]... ')
 
     match user_input:
         case 1:
             pass
             exit()
 
-    message_toBe_encrypted = input('\nPlease enter what you want to encrypt : ')
+    message_toBe_encrypted = input(
+        '\nPlease enter what you want to encrypt : ')
 
     encrypted_message = encrypt(message_toBe_encrypted)
 
