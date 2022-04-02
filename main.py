@@ -21,9 +21,9 @@ password_db = file.read()
 
 
 mydb = mysql.connector.connect(
-  host='127.0.0.1',
-  user=username_db,
-  password=password_db
+    host='127.0.0.1',
+    user=username_db,
+    password=password_db
 )
 
 
@@ -31,11 +31,9 @@ class My_Classes:
     def __init__(self):
         pass
 
-
     def add_class(self):
         # use input and add a new class to the dict
         return 'class added'
-    
 
     def delete_all(self):
         for key, value in classes_dict.items():
@@ -47,7 +45,7 @@ class My_Classes:
             classes_dict.clear()
             print('Dict cleared, Your Dict : ', classes_dict)
             # delete all dicts
-            
+
         elif input_answer == 'n' or input_answer == 'N':
             print('Dict unchanged')
 
@@ -55,28 +53,23 @@ class My_Classes:
             print('Error : Wrong input')
             return
 
-
     def num_of_classes(self):
         # test passed
-        print('You have :' ,len(classes_dict) , 'classes.')
-
+        print('You have :', len(classes_dict), 'classes.')
 
 
 class Build:
     def __init__(self):
         pass
 
-
     def login(self):
         pass
-
 
     def check_time_till_class_start(self):
         # use arrays days hours and see where we are this way we wont need to change anything just add more classes later
         # get every class in the day and lay them out
         # get the time of the class and sort them
         pass
-
 
     def get_to_class(self):
         # use the name in the dict and search that name in the search field and click the class
@@ -85,6 +78,7 @@ class Build:
 
 class Interactive_console:
     pass
+
 
 test = My_Classes()
 # test.delete_all()
