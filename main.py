@@ -1,6 +1,6 @@
 import selenium
 from nested_dict import classes_dict
-# import mysql.connector
+import mysql.connector
 
 
 webdriver_path = 'C:\webdriver\chromedriver'
@@ -19,15 +19,13 @@ username_db = file.read()
 file = open("password_db.txt", "r")
 password_db = file.read()
 
-file = open("host_db.txt", "r")
-host_db = file.read()
 
+mydb = mysql.connector.connect(
+  host='127.0.0.1',
+  user=username_db,
+  password=password_db
+)
 
-# mydb = mysql.connector.connect(
-#   host="localhost",
-#   user="yourusername",
-#   password="yourpassword"
-# )
 
 class My_Classes:
     def __init__(self):
