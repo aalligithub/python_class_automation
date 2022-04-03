@@ -57,7 +57,8 @@ def console(user_input):
                 print('\nYour password was successfuly Encrypted!')
 
             except (FileNotFoundError):
-                print('\nError : password.ini not found please create, Password encryption failed')
+                print(
+                    '\nError : password.ini not found please create, Password encryption failed')
 
             except:
                 print('\nError : Unknown, Password encryption failed')
@@ -72,7 +73,8 @@ def console(user_input):
                 print('\nYour Username was successfuly Encrypted!')
 
             except (FileNotFoundError):
-                print('\nError : username.ini not found please create, Username encryption failed')
+                print(
+                    '\nError : username.ini not found please create, Username encryption failed')
 
             except:
                 print('\nError : Unknown, Username encryption failed')
@@ -101,10 +103,10 @@ if __name__ == "__main__":
         priv_key_file = open("private_key.ini", 'r')
         pub_key_file = open("public_key.ini", 'r')
 
-    # building the files if they dont
+    # building the files if they dont exist
     except(FileNotFoundError):
         print('\nKey files not found, building key files...')
-        
+
         # writing the non existance files
         priv_key_file = open("private_key.ini", 'w')
         pub_key_file = open("public_key.ini", 'w')
@@ -121,18 +123,19 @@ if __name__ == "__main__":
         make_keys()
 
     while True:
-        user_input = input('\nHello welcome to the Encryptor, for encrypting your PASSWORD enter [1], for USERNAME enter [2], to renew your keys enter [3] and enter [4] to exit... ')
+        user_input = input(
+            '\nHello welcome to the Encryptor, for encrypting your PASSWORD enter [1], for USERNAME enter [2], to renew your keys enter [3] and enter [4] to exit... ')
         # when user inputs 1 2 3
         try:
             console(int(user_input))
 
-        # when user wants to close or has inputed wrong
+        # when user wants to close or has inputed something wrong
         except:
             # if user wants to exit
             try:
                 if (int(user_input) == 4):
                     break
-            
+
             # if user has inputed wrong
             except:
                 # empty input
@@ -140,6 +143,7 @@ if __name__ == "__main__":
                     print('\nError : Invalid Response, You did not input')
                 # non numeric input
                 else:
-                    print('\nError : Invalid Response, Non numeric entry, You entered : [', user_input, '], type : ', type(user_input))
+                    print('\nError : Invalid Response, Non numeric entry, You entered : [', user_input, '], type : ', type(
+                        user_input))
 
 # DECRYPT IS EXTERAL USE ONLY DONT RUN HERE
