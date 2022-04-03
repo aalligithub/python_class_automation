@@ -1,6 +1,6 @@
-from asyncio import FIRST_EXCEPTION
 from configparser import ConfigParser
 import rsa
+
 
 config_object = ConfigParser()
 encrypted_message = ''
@@ -36,13 +36,17 @@ def encrypt(message_toBe_encrypted):
 
 def decrypt(encrypted_message):
     # decrypts the file with the private key
+    print('\nDecrypting file...')
+
     priv_key_file = open("private_key.ini", 'r')
     privateKey = rsa.PrivateKey.load_pkcs1(priv_key_file.read(), 'PEM')
 
     decMessage = rsa.decrypt(encrypted_message, privateKey).decode()
-    print("\ndecrypted string: ", decMessage)
 
+    print('\nDecrypting Complete')
     priv_key_file.close()
+
+    return decMessage
 
 
 def console(user_input):
@@ -51,10 +55,13 @@ def console(user_input):
             try:
                 # password encrypt
                 user_input = input(
-                    '\nPlease input the Password to begin encrypting (Your password will never be accessible and only decrypted with your private key) or press Ctrl + C to cancel ')
-                file = open("password.ini", 'w')
-                file.write(str(encrypt(user_input)))
+                    '\nPlease input the Password to begin encrypting (Your password will never be accessible and only decrypted with your private key) or press Ctrl + C to cancel : ')
+                file = open("password.ini", 'wb')
+                file.write(encrypt(user_input))
                 print('\nYour password was successfuly Encrypted!')
+
+            except (TypeError):
+                print('\nError : Could not write the encrypted password to file')
 
             except (FileNotFoundError):
                 print(
@@ -67,10 +74,13 @@ def console(user_input):
             try:
                 # encrypt username
                 user_input = input(
-                    '\nPlease input the Username to begin encrypting (Your username will never be accessible and only decrypted with your private key) or press Ctrl + C to cancel ')
-                file = open("username.ini", 'w')
-                file.write(str(encrypt(user_input)))
+                    '\nPlease input the Username to begin encrypting (Your username will never be accessible and only decrypted with your private key) or press Ctrl + C to cancel : ')
+                file = open("username.ini", 'wb')
+                file.write(encrypt(user_input))
                 print('\nYour Username was successfuly Encrypted!')
+
+            except (TypeError):
+                print('\nError : Could not write the encrypted username to file')
 
             except (FileNotFoundError):
                 print(
@@ -122,6 +132,7 @@ if __name__ == "__main__":
         print('\nNo keys detected, generating keys...')
         make_keys()
 
+
     while True:
         user_input = input(
             '\nHello welcome to the Encryptor, for encrypting your PASSWORD enter [1], for USERNAME enter [2], to renew your keys enter [3] and enter [4] to exit... ')
@@ -147,3 +158,6 @@ if __name__ == "__main__":
                         user_input))
 
 # DECRYPT IS EXTERAL USE ONLY DONT RUN HERE
+# decrypt example:
+    # file = open("password.ini", 'rb')
+    # decrypt(file.read())
