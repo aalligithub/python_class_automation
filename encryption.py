@@ -25,6 +25,7 @@ def make_keys():
 def encrypt(message_toBe_encrypted):
     # encrypts the entry with the public key
     pub_key_file = open("public_key.ini", 'r')
+
     publicKey = rsa.PublicKey.load_pkcs1(pub_key_file.read(), 'PEM')
 
     encrypted_message = rsa.encrypt(message_toBe_encrypted.encode(), publicKey)
@@ -39,12 +40,14 @@ def decrypt(encrypted_message):
     print('\nDecrypting file...')
 
     priv_key_file = open("private_key.ini", 'r')
+
     privateKey = rsa.PrivateKey.load_pkcs1(priv_key_file.read(), 'PEM')
 
     decMessage = rsa.decrypt(encrypted_message, privateKey).decode()
 
-    print('\nDecrypting Complete')
     priv_key_file.close()
+
+    print('\nDecrypting Complete')
 
     return decMessage
 
@@ -56,16 +59,19 @@ def console(user_input):
                 # password encrypt
                 user_input = input(
                     '\nPlease input the Password to begin encrypting (Your password will never be accessible and only decrypted with your private key) or press Ctrl + C to cancel : ')
+
                 file = open("password.ini", 'wb')
                 file.write(encrypt(user_input))
+
                 print('\nYour password was successfuly Encrypted!')
 
             except (TypeError):
-                print('\nError : Could not write the encrypted password to file')
+                print(
+                    '\nError : TypeError, Could not write the encrypted password to file')
 
             except (FileNotFoundError):
                 print(
-                    '\nError : password.ini not found please create, Password encryption failed')
+                    '\nError : password.ini not found, Password encryption failed')
 
             except:
                 print('\nError : Unknown, Password encryption failed')
@@ -75,12 +81,15 @@ def console(user_input):
                 # encrypt username
                 user_input = input(
                     '\nPlease input the Username to begin encrypting (Your username will never be accessible and only decrypted with your private key) or press Ctrl + C to cancel : ')
+
                 file = open("username.ini", 'wb')
                 file.write(encrypt(user_input))
+
                 print('\nYour Username was successfuly Encrypted!')
 
             except (TypeError):
-                print('\nError : Could not write the encrypted username to file')
+                print(
+                    '\nError : TypeError, Could not write the encrypted username to file')
 
             except (FileNotFoundError):
                 print(
@@ -131,7 +140,6 @@ if __name__ == "__main__":
     if priv_key_file.read() == '' or pub_key_file.read() == '':
         print('\nNo keys detected, generating keys...')
         make_keys()
-
 
     while True:
         user_input = input(
