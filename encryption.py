@@ -1,5 +1,3 @@
-from asyncore import write
-from distutils.fancy_getopt import wrap_text
 from configparser import ConfigParser
 import rsa
 
@@ -48,14 +46,14 @@ def console(user_input):
         case 1:
             # password encrypt
             user_input = input(
-                '\nPlease input the Password to begin encrypting (Your password will never be accessible and only decrypted with your private key) or press Ctrl + C to cancel')
+                '\nPlease input the Password to begin encrypting (Your password will never be accessible and only decrypted with your private key) or press Ctrl + C to cancel ')
             encrypt(user_input)
             print('\nYour password was successfuly Encrypted!')
 
         case 2:
             # encrypt username
             user_input = input(
-                '\nPlease input the Username to begin encrypting (Your username will never be accessible and only decrypted with your private key) or press Ctrl + C to cancel')
+                '\nPlease input the Username to begin encrypting (Your username will never be accessible and only decrypted with your private key) or press Ctrl + C to cancel ')
             encrypt(user_input)
             print('\nYour Username was successfuly Encrypted!')
 
@@ -82,6 +80,6 @@ if __name__ == "__main__":
 
     user_input = input(
         '\nHello welcome to the Encryptor, for encrypting your PASSWORD enter [1], for USERNAME enter [2], to renew your keys enter [3] and enter [4] to exit... ')
-    console(user_input)
+    console(int(user_input))
 
 # DECRYPT IS EXTERAL USE ONLY DONT RUN HERE
