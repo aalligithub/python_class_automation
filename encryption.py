@@ -1,3 +1,4 @@
+from asyncio import FIRST_EXCEPTION
 from configparser import ConfigParser
 import rsa
 
@@ -7,6 +8,7 @@ user_input = ''
 
 
 def make_keys():
+    # makes a pair of private and public keys and writes them in .ini file
     print('\nMaking Private and Public keys...')
     public_key, private_key = rsa.newkeys(512)
 
@@ -21,6 +23,7 @@ def make_keys():
 
 
 def encrypt(message_toBe_encrypted):
+    # encrypts the entry with the public key
     pub_key_file = open("public_key.ini", 'r')
     publicKey = rsa.PublicKey.load_pkcs1(pub_key_file.read(), 'PEM')
 
@@ -32,6 +35,7 @@ def encrypt(message_toBe_encrypted):
 
 
 def decrypt(encrypted_message):
+    # decrypts the file with the private key
     priv_key_file = open("private_key.ini", 'r')
     privateKey = rsa.PrivateKey.load_pkcs1(priv_key_file.read(), 'PEM')
 
@@ -44,42 +48,98 @@ def decrypt(encrypted_message):
 def console(user_input):
     match user_input:
         case 1:
-            # password encrypt
-            user_input = input(
-                '\nPlease input the Password to begin encrypting (Your password will never be accessible and only decrypted with your private key) or press Ctrl + C to cancel ')
-            encrypt(user_input)
-            print('\nYour password was successfuly Encrypted!')
+            try:
+                # password encrypt
+                user_input = input(
+                    '\nPlease input the Password to begin encrypting (Your password will never be accessible and only decrypted with your private key) or press Ctrl + C to cancel ')
+                file = open("password.ini", 'w')
+                file.write(str(encrypt(user_input)))
+                print('\nYour password was successfuly Encrypted!')
+
+            except (FileNotFoundError):
+                print('\nError : password.ini not found please create, Password encryption failed')
+
+            except:
+                print('\nError : Unknown, Password encryption failed')
 
         case 2:
-            # encrypt username
-            user_input = input(
-                '\nPlease input the Username to begin encrypting (Your username will never be accessible and only decrypted with your private key) or press Ctrl + C to cancel ')
-            encrypt(user_input)
-            print('\nYour Username was successfuly Encrypted!')
+            try:
+                # encrypt username
+                user_input = input(
+                    '\nPlease input the Username to begin encrypting (Your username will never be accessible and only decrypted with your private key) or press Ctrl + C to cancel ')
+                file = open("username.ini", 'w')
+                file.write(str(encrypt(user_input)))
+                print('\nYour Username was successfuly Encrypted!')
+
+            except (FileNotFoundError):
+                print('\nError : username.ini not found please create, Username encryption failed')
+
+            except:
+                print('\nError : Unknown, Username encryption failed')
 
         case 3:
             # renew keys
-            make_keys()
+            try:
+                make_keys()
+            except:
+                print('Error : Unknown, Making keys failed')
 
         case 4:
             # exits
+            print('\nExiting, Goodbye!\n')
             exit()
 
         case _:
             # default case
-            print('\nError : Invalid Response, Please re run encryption.py')
+            print(
+                '\nError : Invalid Response, Wrong Number, You entered : [', user_input, ']')
 
 
 if __name__ == "__main__":
-    priv_key_file = open("private_key.ini", 'r')
-    pub_key_file = open("public_key.ini", 'r')
+    # checking if the files exist
+    try:
+        priv_key_file = open("private_key.ini", 'r')
+        pub_key_file = open("public_key.ini", 'r')
 
+    # building the files if they dont
+    except(FileNotFoundError):
+        print('\nKey files not found, building key files...')
+        
+        # writing the non existance files
+        priv_key_file = open("private_key.ini", 'w')
+        pub_key_file = open("public_key.ini", 'w')
+
+        # reading to see if the file is empty
+        priv_key_file = open("private_key.ini", 'r')
+        pub_key_file = open("public_key.ini", 'r')
+
+        print('\nKey files made')
+
+    # checking if the key files are empty
     if priv_key_file.read() == '' or pub_key_file.read() == '':
         print('\nNo keys detected, generating keys...')
         make_keys()
 
-    user_input = input(
-        '\nHello welcome to the Encryptor, for encrypting your PASSWORD enter [1], for USERNAME enter [2], to renew your keys enter [3] and enter [4] to exit... ')
-    console(int(user_input))
+    while True:
+        user_input = input('\nHello welcome to the Encryptor, for encrypting your PASSWORD enter [1], for USERNAME enter [2], to renew your keys enter [3] and enter [4] to exit... ')
+        # when user inputs 1 2 3
+        try:
+            console(int(user_input))
+
+        # when user wants to close or has inputed wrong
+        except:
+            # if user wants to exit
+            try:
+                if (int(user_input) == 4):
+                    break
+            
+            # if user has inputed wrong
+            except:
+                # empty input
+                if (user_input == ''):
+                    print('\nError : Invalid Response, You did not input')
+                # non numeric input
+                else:
+                    print('\nError : Invalid Response, Non numeric entry, You entered : [', user_input, '], type : ', type(user_input))
 
 # DECRYPT IS EXTERAL USE ONLY DONT RUN HERE
