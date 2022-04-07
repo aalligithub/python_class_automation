@@ -169,3 +169,5 @@ if __name__ == "__main__":
 # decrypt example:
     # file = open("password.ini", 'rb')
     # decrypt(file.read())
+
+# BACKING UP, THIS CODE WORKS
