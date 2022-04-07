@@ -142,28 +142,14 @@ if __name__ == "__main__":
         make_keys()
 
     while True:
-        user_input = input(
-            '\nHello welcome to the Encryptor, for encrypting your PASSWORD enter [1], for USERNAME enter [2], to renew your keys enter [3] and enter [4] to exit... ')
-        # when user inputs 1 2 3
-        try:
-            console(int(user_input))
-
-        # when user wants to close or has inputed something wrong
-        except:
-            # if user wants to exit
+        user_input = 0
+        while not 1 <= user_input <= 4:
             try:
-                if (int(user_input) == 4):
-                    break
-
-            # if user has inputed wrong
-            except:
-                # empty input
-                if (user_input == ''):
-                    print('\nError : Invalid Response, You did not input')
-                # non numeric input
-                else:
-                    print('\nError : Invalid Response, Non numeric entry, You entered : [', user_input, '], type : ', type(
-                        user_input))
+                user_input = int(input(
+                    "\nHello welcome to the Encryptor, for encrypting your PASSWORD enter [1], for USERNAME enter [2], to renew your keys enter [3] and enter [4] to exit... "))
+            except ValueError:
+                print('\nError : Invalid Response, Non numeric entry')
+        console(user_input)
 
 # DECRYPT IS EXTERAL USE ONLY DONT RUN HERE
 # decrypt example:
